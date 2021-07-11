@@ -28,7 +28,17 @@ public class HibernateProductDao implements ProductDao{
 		List<Product> products = session.createQuery("from Product", Product.class).getResultList();
 		return products;
 	}
-
+	
+	@Override
+	@Transactional
+	public Product getById(int id) {
+		
+		Session session = entityManager.unwrap(Session.class);
+		Product product = session.get(Product.class, id);
+		return product;
+	}
+	
+	
 	@Override
 	@Transactional
 	public void add(Product product) {
@@ -51,5 +61,6 @@ public class HibernateProductDao implements ProductDao{
 		Product willdeleProduct = session.get(Product.class, product.getId());
 		session.delete(willdeleProduct);		
 	}
+
 	
 }

@@ -25,6 +25,12 @@ public class ProductManager implements ProductService {
 	public List<Product> getAll() {
 		return this.productDao.getAll();
 	}
+	
+	@Override
+	public Product getById(int id) {
+		return this.productDao.getById(id);
+	}
+
 
 	@Override
 	@Transactional
@@ -44,4 +50,5 @@ public class ProductManager implements ProductService {
 		this.productDao.delete(product);	
 	}
 
+	
 }
